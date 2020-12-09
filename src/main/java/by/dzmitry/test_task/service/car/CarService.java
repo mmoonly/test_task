@@ -3,7 +3,6 @@ package by.dzmitry.test_task.service.car;
 import by.dzmitry.test_task.service.dto.CarDto;
 import by.dzmitry.test_task.service.dto.NumberplateDto;
 import by.dzmitry.test_task.service.dto.ProfileDto;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

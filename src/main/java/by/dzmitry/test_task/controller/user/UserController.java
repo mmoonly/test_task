@@ -35,10 +35,4 @@ public class UserController {
         user.setPassword(password);
         userService.saveAdmin(user);
     }
-
-    @GetMapping("/hello")
-    public ResponseEntity<List<User>> getSome() {
-        return ResponseEntity.ok(userService.getUsers());
-    }
-
 }

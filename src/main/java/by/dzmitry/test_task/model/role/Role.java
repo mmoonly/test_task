@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "roles",schema = "PUBLIC")
+@Table(name = "roles", schema = "PUBLIC")
 @EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter

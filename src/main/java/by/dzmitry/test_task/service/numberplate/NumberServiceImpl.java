@@ -59,7 +59,7 @@ public class NumberServiceImpl implements NumberplateService {
         if (numberplate.isEmpty()) {
             throw new CustomException("Numberplate not found");
         }
-        if(numberplate.get().getCar() !=null){
+        if (numberplate.get().getCar() != null) {
             throw new CustomException("Can't delete uses numberplate with");
         }
         numberplateDao.deleteById(numberplateId);

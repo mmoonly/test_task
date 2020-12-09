@@ -1,7 +1,6 @@
 package by.dzmitry.test_task.controller.numberplate;
 
 import by.dzmitry.test_task.service.dto.CarDto;
-import by.dzmitry.test_task.service.dto.CityDto;
 import by.dzmitry.test_task.service.dto.NumberplateDto;
 import by.dzmitry.test_task.service.numberplate.NumberplateService;
 import io.swagger.annotations.Api;

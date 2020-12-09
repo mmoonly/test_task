@@ -10,7 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users",schema = "PUBLIC")
+@Table(name = "users", schema = "PUBLIC")
 @EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter
