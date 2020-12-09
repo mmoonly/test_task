@@ -3,7 +3,6 @@ package by.dzmitry.test_task.model.car;
 import by.dzmitry.test_task.model.AEntity;
 import by.dzmitry.test_task.model.numberplate.Numberplate;
 import by.dzmitry.test_task.model.profile.Profile;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,13 +22,14 @@ public class Car extends AEntity {
     @Column(name = "brand")
     private String brand;
 
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "number_plate_id")
     private Numberplate numberplate;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "cars")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "profiles_cars",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "profile_id"))
     private List<Profile> profiles;
 
     public Car(String brand, Numberplate numberplate) {

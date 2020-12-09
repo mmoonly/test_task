@@ -51,6 +51,9 @@ public class CityServiceImpl implements CityService {
         if (city.isEmpty()) {
             throw new CustomException("No such city");
         }
+        if(!city.get().getProfiles().isEmpty()){
+            throw new CustomException("Can't delete city with profiles");
+        }
         cityDao.deleteById(cityId);
     }
 
