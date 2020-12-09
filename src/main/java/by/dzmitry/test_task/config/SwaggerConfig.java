@@ -22,7 +22,7 @@ public class SwaggerConfig {
                 .securityContexts(Collections.singletonList(securityContext()))
                 .securitySchemes(Collections.singletonList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("by.dzmitry.test_task.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -44,8 +44,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Pauliukevich Dzmitry Final Task",
-                "Adverts app",
+                "Pauliukevich Dzmitry Test Task",
+                "Carsharing's cars mainteenace app",
                 "1.0",
                 "",
                 new Contact("Dzmitry Pauliukevich", "", "mmoonly97@gmail.com"),

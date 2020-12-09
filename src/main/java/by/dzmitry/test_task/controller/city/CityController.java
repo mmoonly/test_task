@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to modify cities.")
     public void modifyCars(@PathVariable Integer id,
                            @RequestParam(defaultValue = "none") String name) {
@@ -33,6 +35,7 @@ public class CityController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to delete cities.")
     public void deleteCars(@PathVariable Integer id) {
         cityService.deleteCity(id);
@@ -47,12 +50,14 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Use to get city by id.")
     public ResponseEntity<CityDto> getCityById(@PathVariable Integer id) {
         return ResponseEntity.ok(cityService.getCityById(id));
     }
 
     @GetMapping("/{id}/profiles")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to get profiles by city.")
     public ResponseEntity<List<ProfileDto>> getProfilesByCar(@PathVariable Integer id) {
         return ResponseEntity.ok(cityService.getProfilesByCity(id));

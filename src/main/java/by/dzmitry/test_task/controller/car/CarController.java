@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to modify cars.")
     public void modifyCars(@PathVariable Integer id,
                            @RequestParam(defaultValue = "none") String brand,
@@ -36,6 +38,7 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to delete cars.")
     public void deleteCars(@PathVariable Integer id) {
         carService.deleteCar(id);
@@ -50,18 +53,21 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Use to get car by id.")
     public ResponseEntity<CarDto> getCarById(@PathVariable Integer id) {
         return ResponseEntity.ok(carService.getCarById(id));
     }
 
     @GetMapping("/{id}/numberplate")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to get numberplate by car.")
     public ResponseEntity<NumberplateDto> getNumberplateByCar(@PathVariable Integer id) {
         return ResponseEntity.ok(carService.getNumberplateByCar(id));
     }
 
     @GetMapping("/{id}/profiles")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to get profiles by car.")
     public ResponseEntity<List<ProfileDto>> getProfilesByCar(@PathVariable Integer id) {
         return ResponseEntity.ok(carService.getProfilesByCar(id));

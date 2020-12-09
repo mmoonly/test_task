@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class NumberplateController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to modify numberplates.")
     public void modifyNumberplate(@PathVariable Integer id,
                                   @RequestParam(defaultValue = "-1") Integer region,
@@ -36,6 +38,7 @@ public class NumberplateController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to delete numberplates.")
     public void deleteNumberplate(@PathVariable Integer id) {
         numberplateService.deleteNumberplate(id);
@@ -50,12 +53,14 @@ public class NumberplateController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Use to get numberplate by id.")
     public ResponseEntity<NumberplateDto> getNumberplateById(@PathVariable Integer id) {
         return ResponseEntity.ok(numberplateService.getNumberplateById(id));
     }
 
     @GetMapping("/{id}/car")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation("Used to get car by numberplate.")
     public ResponseEntity<CarDto> getCarByNumberplate(@PathVariable Integer id) {
         return ResponseEntity.ok(numberplateService.getCarByNumberplate(id));
